@@ -16,7 +16,6 @@ import SelectPreferGender from '@/components/onboarding-profile/SelectPreferGend
 import SelectAge from '@/components/onboarding-profile/SelectAge'
 import SelectPreferActivities from '@/components/onboarding-profile/SelectPreferActivities'
 import axios, { AxiosError } from 'axios'
-import { accessTokenAtom, userIdAtom } from '../login/page'
 import { useAtomValue } from 'jotai'
 import { ErrorResponse } from '../types/diary'
 import axiosInstance from '@/apiConfig'
@@ -81,8 +80,8 @@ const OnboadringProfile: NextPage = () => {
     const [ampm, setAmpm] = useState<"AM" | "PM">("AM");
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const userId = useAtomValue(userIdAtom);
-    const accessToken = useAtomValue(accessTokenAtom);
+    // const userId = useAtomValue(userIdAtom);
+    // const accessToken = useAtomValue(accessTokenAtom);
     const [progress, setProgress] = useState(0);
 
     const totalSteps = 5
@@ -123,33 +122,33 @@ const OnboadringProfile: NextPage = () => {
         setCurrentStep(currentStep + 1)
         setIsLoading(true)
         try {
-            const response = await axiosInstance.patch(`/customers/${userId}`,
-                {
-                    "nickname": nickname,
-                    "gender": gender,
-                    "age": age,
-                    "hour": parseInt(reminderHour),
-                    "minute": parseInt(reminderMinute),
-                    "ampm": ampm
-                },
-                {
-                    headers: {
-                        "Authorization": `Bearer ${accessToken}`
-                    },
-                    onDownloadProgress: (progressEvent) => {
-                        const percentCompledted = Math.round(
-                            (progressEvent.loaded * 100) / (progressEvent.total || 1000)
-                        )
-                        setProgress(percentCompledted)
-                    }
-                },
-            )
+            // const response = await axiosInstance.patch(`/customers/${userId}`,
+            //     {
+            //         "nickname": nickname,
+            //         "gender": gender,
+            //         "age": age,
+            //         "hour": parseInt(reminderHour),
+            //         "minute": parseInt(reminderMinute),
+            //         "ampm": ampm
+            //     },
+            //     {
+            //         headers: {
+            //             "Authorization": `Bearer ${accessToken}`
+            //         },
+            //         onDownloadProgress: (progressEvent) => {
+            //             const percentCompledted = Math.round(
+            //                 (progressEvent.loaded * 100) / (progressEvent.total || 1000)
+            //             )
+            //             setProgress(percentCompledted)
+            //         }
+            //     },
+            // )
 
-            if (response.status === 200) {
-                console.log("success")
-            }
+            // if (response.status === 200) {
+            //     console.log("success")
+            // }
 
-            setProgress(100)
+            // setProgress(100)
         } catch (error: any) {
             if (axios.isAxiosError(error)) {
                 const axiosError = error as AxiosError<ErrorResponse>
