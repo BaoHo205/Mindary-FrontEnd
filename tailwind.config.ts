@@ -64,6 +64,10 @@ const config: Config = {
       },
       animation: {
         "caret-blink": "caret-blink 1.25s ease-out infinite",
+      },
+      fontFamily: {
+        sans: ['Urbanist', ...require('tailwindcss/defaultTheme').fontFamily.sans],
+        urbanist: ['Urbanist', ...require('tailwindcss/defaultTheme').fontFamily.sans],
       }
     },
   },
