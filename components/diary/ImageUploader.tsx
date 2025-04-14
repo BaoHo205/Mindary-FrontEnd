@@ -187,7 +187,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImagesChange, value }) 
 
   return (
     <div className="mt-4">
-      <Label className="font-medium text-lg">Photo</Label>
+      <Label className="text-[18px] font-semibold">Photo</Label>
       <div className="flex flex-wrap gap-2 mt-2">
         {images.map((file, index) => (
           <div key={index} className="relative w-20 h-20">
@@ -211,7 +211,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImagesChange, value }) 
         ))}
       </div>
 
-      <div className="flex space-x-4 mt-3">
+      <div className="flex space-x-4 mt-3 justify-evenly">
         <div {...getRootProps()} className="flex flex-col">
           <Input {...getInputProps()} className="hidden" />
           <Button variant="outline" className="flex items-center space-x-2">
